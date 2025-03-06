@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Our Services - PhysioCare Clinic">
+    <meta name="keywords" content="physiotherapy, clinic, services">
+    <meta name="author" content="PhysioCare Clinic">
+    <title>Our Services - PhysioCare Clinic</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <img src="logo.jpg" alt="PhysioCare Clinic Logo">
+        </div>
+        <div class="clinic-name">Ajay's Physiotherapy Centre</div>
+        <div class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <div class="dropdown">
+                <a href="#about" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">About</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown-toggle">
+                    <a href="about-us.html">About Us</a>
+                    <a href="our-team.html">Our Team</a>
+                </div>
+            </div>
+            <a href="service.html" class="active">Services</a>
+            <a href="index.html#appointment">Appointment</a>
+            <a href="index.html#reviews">Reviews</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+    </header>
+    <style>
+ /* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h2 {
+    font-size: 2.5rem;
+    color: #D32F2F; /* Red for headings */
+    margin-bottom: 2rem;
+}
+
+p {
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    margin-top: 1rem;
+    background: #D32F2F; /* Red for buttons */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #B71C1C; /* Darker red on hover */
+}
+
+/* More Dramatic Fade-in Effect */
+.fade-in {
+    opacity: 0;                         /* Hidden initially */
+    transform: translateY(80px);         /* Slides from 80px below */
+    transition: opacity 2s ease, transform 2s ease; /* Slower fade-in */
+    transition-delay: 0.3s;              /* Optional: Delay animation */
+}
+
+.fade-in.visible {
+    opacity: 1;                          /* Fully visible */
+    transform: translateY(0);            /* Return to original position */
+}
+
+
+/* Header and Navigation */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed; /* Fix the header at the top */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Ensure it stays above other content */
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.header.hide {
+    transform: translateY(-100%); /* Hide the header by moving it up */
+}
+.header.sticky {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.logo img {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.clinic-name {
+    font-size: 2.4rem;
+    font-weight: bold;
+    margin-left: 0.2rem;
+    background: linear-gradient(45deg, #D32F2F, #FFC107); /* Red to Yellow gradient */
+    background-clip: text; /* Standard property */
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+    .clinic-name {
+        font-size: 1.4rem; /* Smaller size for mobile phones */
+    }
+}
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+    justify-content: center;
+    align-items: flex-start; /* Align bars to the left (same starting point) */
+}
+
+.menu-toggle .bar {
+    height: 3px; /* Bar height */
+    margin: 3px 0; /* Spacing between bars */
+    border-radius: 2px; /* Rounded corners */
+    transition: all 0.3s ease; /* Smooth transition for animations */
+}
+
+/* First bar (second longest) */
+.menu-toggle .bar:nth-child(1) {
+    width: 20px; /* Second longest */
+    background-color: #D32F2F; /* Blue color */
+}
+
+/* Middle bar (longest) */
+.menu-toggle .bar:nth-child(2) {
+    width: 25px; /* Longest */
+    background-color: #FFC107; /* Coral color */
+}
+
+/* Third bar (shortest) */
+.menu-toggle .bar:nth-child(3) {
+    width: 15px; /* Shortest */
+    background-color: #D32F2F; /* Green color */
+}
+
+/* Hover effect - Change colors on hover */
+.menu-toggle:hover .bar:nth-child(1) {
+    background-color: #FFC107; /* Darker blue */
+}
+
+.menu-toggle:hover .bar:nth-child(2) {
+    background-color: #D32F2F; /* Darker coral */
+}
+
+.menu-toggle:hover .bar:nth-child(3) {
+    background-color: #FFC107; /* Darker green */
+}
+
+        .nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    color: #333;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #D32F2F; /* Red on hover */
+}
+
+.nav-links a.active {
+    color: #D32F2F; /* Red for active link */
+    text-decoration: none;
+    .dropdown {
+    position: relative;
+}
+}
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    content: " ▼"; /* Down arrow as indicator */
+    font-size: 0.6em;
+    vertical-align: middle;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%; /* Position dropdown below the parent */
+    left: 50%; /* Center the dropdown relative to the parent */
+    transform: translateX(-50%); /* Adjust for centering */
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    min-width: 150px; /* Ensure dropdown has a minimum width */
+    padding: 10px 0; /* Add padding for better spacing */
+    text-align: left; /* Align text to the left */
+}
+
+.dropdown-menu a {
+    display: block; /* Make each link a block element */
+    padding: 8px 16px; /* Add padding for clickable area */
+    color: #333; /* Text color */
+    text-decoration: none; /* Remove underline */
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.dropdown-menu a:hover {
+    background-color: #e9ecef; /* Hover background color */
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+    .dropdown-toggle::after {
+        content: " ▼"; /* Keep the indicator for mobile */
+    }
+
+    .dropdown-menu {
+        position: static; /* Stack dropdown items vertically on mobile */
+        box-shadow: none;
+        left: auto; /* Reset left positioning */
+        transform: none; /* Reset transform */
+    }
+
+    .dropdown.active .dropdown-menu {
+        display: block; /* Show dropdown when active */
+    }
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #D32F2F;
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+}
+
+.back-to-top:hover {
+    background-color: #ff4a3a;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background-color: #f8f9fa;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+}
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      color: #333;
+    }
+    
+    h1, h2, h3 {
+      margin: 0;
+      padding: 0;
+    }
+    
+    p {
+      margin: 0 0 20px 0;
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+   /* Hero Section */
+.services-hero {
+  background: url('hero-bg.jpg') no-repeat center center/cover; /* Add background image */
+  color: #fff;
+  padding: 60px 20px;
+  text-align: center;
+  position: relative; /* For overlay positioning */
+  overflow: hidden; /* Ensure content stays within the section */
+  margin-top: 80px; /* Adjust this value to match the height of your navigation bar */
+  display: flex; /* Use flexbox for centering */
+  flex-direction: column; /* Stack content vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  min-height: 300px; /* Set a minimum height for the hero section */
+}
+
+/* Dark Overlay for Better Text Visibility */
+.services-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  z-index: 1; /* Place overlay above the background image */
+}
+
+.services-hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  position: relative; /* Ensure text is above the overlay */
+  z-index: 2;
+}
+
+.services-hero p {
+  font-size: 1.2rem;
+  position: relative; /* Ensure text is above the overlay */
+  z-index: 2;
+  max-width: 800px; /* Limit paragraph width for better readability */
+  margin: 0 auto; /* Center the paragraph horizontally */
+}
+
+@media (max-width: 768px) {
+  .services-hero {
+    padding: 40px 20px; /* Reduce padding for mobile */
+    min-height: 300px; /* Adjust height for mobile */
+  }
+
+  .services-hero h1 {
+    font-size: 2rem; /* Smaller heading on mobile */
+  }
+
+  .services-hero p {
+    font-size: 1rem; /* Smaller paragraph text on mobile */
+    max-width: 90%; /* Allow paragraph to take more width on mobile */
+  }
+}
+    /* General Card Styles */
+.therapy-card,
+.treatment-card,
+.service-card,
+.procedure-card {
+  background-size: cover; /* Ensure the background image covers the card */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Add padding for content */
+  color: white; /* White text for better contrast */
+  text-align: center; /* Center-align text */
+  position: relative; /* For overlay positioning */
+  overflow: hidden; /* Ensure content stays within the card */
+  min-height: 250px; /* Set a minimum height for consistency */
+  display: flex; /* Use flexbox for centering content */
+  flex-direction: column; /* Stack content vertically */
+  justify-content: flex-end; /* Align content to the bottom */
+}
+
+/* Dark Overlay for Better Text Visibility */
+.therapy-card::before,
+.treatment-card::before,
+.service-card::before,
+.procedure-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  z-index: 1; /* Place overlay above the background image */
+}
+/* Add gap between sections */
+.therapy-section,
+.treatment-section,
+.service-section,
+.procedure-section {
+  margin-bottom: 60px; /* Adjust this value to control the gap size */
+}
+
+/* Optional: Add padding to the top of each section for extra spacing */
+.therapy-section,
+.treatment-section,
+.service-section,
+.procedure-section {
+  padding-top: 40px; /* Adjust this value as needed */
+}
+/* Center Section Headings */
+.therapy-section h2,
+.treatment-section h2,
+.service-section h2,
+.procedure-section h2 {
+  text-align: center; /* Center-align the heading text */
+  margin-bottom: 30px; /* Add space below the heading */
+}
+
+/* Card Content */
+.therapy-card h3,
+.treatment-card h3,
+.service-card h3,
+.procedure-card h3 {
+  position: relative;
+  z-index: 2; /* Ensure text is above the overlay */
+  margin-bottom: 10px; /* Space between heading and paragraph */
+  font-size: 1.5rem; /* Larger heading */
+  color: #D32F2F; /* Coral color for headings */
+}
+
+.therapy-card p,
+.treatment-card p,
+.service-card p,
+.procedure-card p {
+  position: relative;
+  z-index: 2; /* Ensure text is above the overlay */
+  font-size: 1rem; /* Standard paragraph size */
+  color: #fff; /* White text for better contrast */
+  line-height: 1.6; /* Improve readability */
+  margin: 0; /* Remove default margin */
+}
+
+/* Individual Background Images for Therapy Cards */
+.therapy-card:nth-child(1) {
+  background-image: url('therapy1.jpg'); /* Replace with your image path */
+}
+
+.therapy-card:nth-child(2) {
+  background-image: url('therapy2.jpg'); /* Replace with your image path */
+}
+
+.therapy-card:nth-child(3) {
+  background-image: url('therapy3.jpg'); /* Replace with your image path */
+}
+
+.therapy-card:nth-child(4) {
+  background-image: url('therapy4.jpg'); /* Replace with your image path */
+}
+
+.therapy-card:nth-child(5) {
+  background-image: url('therapy5.jpg'); /* Replace with your image path */
+}
+
+.therapy-card:nth-child(6) {
+  background-image: url('therapy6.jpg'); /* Replace with your image path */
+}
+
+.therapy-card:nth-child(7) {
+  background-image: url('therapy7.jpg'); /* Replace with your image path */
+}
+
+.therapy-card:nth-child(8) {
+  background-image: url('therapy8.jpg'); /* Replace with your image path */
+}
+
+.therapy-card:nth-child(9) {
+  background-image: url('therapy9.jpg'); /* Replace with your image path */
+}
+
+.therapy-card:nth-child(10) {
+  background-image: url('therapy10.jpg'); /* Replace with your image path */
+}
+
+.therapy-card:nth-child(11) {
+  background-image: url('therapy11.jpg'); /* Replace with your image path */
+}
+
+.therapy-card:nth-child(12) {
+  background-image: url('therapy12.jpg'); /* Replace with your image path */
+}
+
+.therapy-card:nth-child(13) {
+  background-image: url('therapy13.jpg'); /* Replace with your image path */
+}
+
+.therapy-card:nth-child(14) {
+  background-image: url('therapy14.jpg'); /* Replace with your image path */
+}
+
+/* Individual Background Images for Treatment Cards */
+.treatment-card:nth-child(1) {
+  background-image: url('treatment1.jpg'); /* Replace with your image path */
+}
+
+.treatment-card:nth-child(2) {
+  background-image: url('treatment2.jpg'); /* Replace with your image path */
+}
+
+.treatment-card:nth-child(3) {
+  background-image: url('treatment3.jpg'); /* Replace with your image path */
+}
+
+.treatment-card:nth-child(4) {
+  background-image: url('treatment4.jpg'); /* Replace with your image path */
+}
+
+.treatment-card:nth-child(5) {
+  background-image: url('treatment5.jpg'); /* Replace with your image path */
+}
+
+.treatment-card:nth-child(6) {
+  background-image: url('treatment6.jpg'); /* Replace with your image path */
+}
+
+/* Individual Background Images for Service Cards */
+.service-card:nth-child(1) {
+  background-image: url('service1.jpg'); /* Replace with your image path */
+}
+
+.service-card:nth-child(2) {
+  background-image: url('service2.jpg'); /* Replace with your image path */
+}
+
+.service-card:nth-child(3) {
+  background-image: url('service3.jpg'); /* Replace with your image path */
+}
+
+.service-card:nth-child(4) {
+  background-image: url('service4.jpg'); /* Replace with your image path */
+}
+
+/* Individual Background Images for Procedure Cards */
+.procedure-card:nth-child(1) {
+  background-image: url('procedure1.jpg'); /* Replace with your image path */
+}
+
+.procedure-card:nth-child(2) {
+  background-image: url('procedure2.jpg'); /* Replace with your image path */
+}
+
+/* Grid Layout */
+.therapy-grid,
+.treatment-grid,
+.service-grid,
+.procedure-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+  gap: 20px; /* Space between cards */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .therapy-grid,
+  .treatment-grid,
+  .service-grid,
+  .procedure-grid {
+    grid-template-columns: 1fr; /* Stack cards vertically on mobile */
+  }
+
+  .therapy-card,
+  .treatment-card,
+  .service-card,
+  .procedure-card {
+    min-height: 200px; /* Adjust height for mobile */
+  }
+}
+    
+/* Call-to-Action Section */
+.cta {
+  padding: 4rem 2rem;
+  text-align: center;
+  color: white;
+  background: #cfc79e; /* Replace with your desired background color */
+  position: relative;
+  display: flex; /* Use flexbox for centering */
+  flex-direction: column; /* Stack content vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+}
+
+/* Remove the dark overlay (no longer needed) */
+.cta::before {
+  display: none; /* Hide the overlay */
+}
+
+.cta h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 2; /* Ensure text is above other content */
+}
+
+.cta p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 2; /* Ensure text is above other content */
+  max-width: 600px; /* Limit paragraph width for better readability */
+  text-align: center; /* Center-align paragraph text */
+}
+
+.cta .btn {
+  background: #D32F2F;
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;
+  position: relative;
+  z-index: 2; /* Ensure button is above other content */
+}
+
+.cta .btn:hover {
+  background: #B71C1C;
+}
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .therapy-grid,
+      .treatment-grid,
+      .service-grid,
+      .procedure-grid {
+        grid-template-columns: 1fr; /* Stack cards vertically on mobile */
+      }
+    
+      .services-hero h1 {
+        font-size: 2rem;
+      }
+    
+      .services-hero p {
+        font-size: 1rem;
+      }
+    
+      .cta h2 {
+        font-size: 1.8rem;
+      }
+    
+      .cta p {
+        font-size: 1rem;
+      }
+    }
+  /* Footer */
+.footer {
+  background-color: #000;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  display: flex; /* Use flexbox for centering */
+  flex-direction: column; /* Stack content vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+}
+
+.footer p {
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  max-width: 600px; /* Limit paragraph width for better readability */
+}
+
+.social-links {
+  margin-top: 10px;
+}
+
+.social-links a {
+  color: #FFD700;
+  margin: 0 10px;
+  font-size: 1.2rem;
+  text-decoration: none; /* Remove underline from links */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.social-links a:hover {
+  color: #D32F2F;
+}
+</style>
+
+   <!-- Hero Section -->
+<section class="services-hero fade-in">
+    <div class="hero-content">
+      <h1>Our Services</h1>
+      <p>Discover the comprehensive range of physiotherapy services we offer to help you regain mobility, manage pain, and improve your quality of life.</p>
+    </div>
+  </section>
+  
+  <!-- Therapy Section -->
+  <section id="therapy" class="therapy-section fade-in">
+    <h2>Therapy</h2>
+    <div class="therapy-grid">
+      <!-- Therapy 1 to 16 -->
+      <div class="therapy-card fade-in">
+        <h3>Physical Therapy</h3>
+        <p>We use advanced physical therapy techniques to improve mobility, reduce pain, and enhance overall physical function.</p>
+      </div>
+      <div class="therapy-card fade-in">
+        <h3>Occupational Therapy</h3>
+        <p>Our occupational therapy programs help patients regain independence in daily activities and improve quality of life.</p>
+      </div>
+      <!-- Add more therapy cards as needed -->
+    </div>
+  </section>
+  
+  <!-- Treatment Section -->
+  <section id="treatment" class="treatment-section fade-in">
+    <h2>Treatment</h2>
+    <div class="treatment-grid">
+      <!-- Treatment 1 to 6 -->
+      <div class="treatment-card fade-in">
+        <h3>Manual Therapy</h3>
+        <p>Our hands-on techniques help relieve pain, improve mobility, and restore function.</p>
+      </div>
+      <div class="treatment-card fade-in">
+        <h3>Electrotherapy</h3>
+        <p>We use electrical stimulation to reduce pain, promote healing, and improve muscle function.</p>
+      </div>
+      <!-- Add more treatment cards as needed -->
+    </div>
+  </section>
+  
+  <!-- Service Section -->
+  <section id="service" class="service-section fade-in">
+    <h2>Service</h2>
+    <div class="service-grid">
+      <!-- Service 1 to 6 -->
+      <div class="service-card fade-in">
+        <h3>Home Visits</h3>
+        <p>We offer home-based physiotherapy services for patients who cannot visit the clinic.</p>
+      </div>
+      <div class="service-card fade-in">
+        <h3>Teleconsultation</h3>
+        <p>Consult with our experts online for personalized advice and treatment plans.</p>
+      </div>
+      <!-- Add more service cards as needed -->
+    </div>
+  </section>
+  
+  <!-- Procedure and Management Section -->
+  <section id="procedure" class="procedure-section fade-in">
+    <h2>Procedure and Management</h2>
+    <div class="procedure-grid">
+      <!-- Procedure 1 -->
+      <div class="procedure-card fade-in">
+        <h3>Dry Needling</h3>
+        <p>We use dry needling to relieve muscle pain and improve mobility.</p>
+      </div>
+      <!-- Procedure 2 -->
+      <div class="procedure-card fade-in">
+        <h3>Taping</h3>
+        <p>Our taping techniques provide support and stability to injured areas.</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Call-to-Action Section -->
+  <section class="cta fade-in">
+    <h2>Ready to Start Your Recovery Journey?</h2>
+    <p>Contact us today to schedule an appointment and take the first step towards a healthier, pain-free life.</p>
+    <a href="index.html#appointment" class="btn">Book Now</a>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2023 PhysioCare Clinic. All rights reserved.</p>
+    <div class="social-links">
+      <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </footer>
+    <!-- Back to Top Button -->
+    <div class="back-to-top" aria-label="Back to top">&#8593;</div>
+
+       <!-- JavaScript for Interactivity -->
+       <script>
+        // Toggle Mobile Menu
+ const mobileMenu = document.getElementById('mobile-menu');
+ const navLinks = document.querySelector('.nav-links');
+ 
+ mobileMenu.addEventListener('click', () => {
+     navLinks.classList.toggle('active');
+ });
+ 
+ // Close Menu When Clicked Outside
+ document.addEventListener('click', (event) => {
+     const isClickInsideMenu = navLinks.contains(event.target) || mobileMenu.contains(event.target);
+     if (!isClickInsideMenu && navLinks.classList.contains('active')) {
+         navLinks.classList.remove('active');
+     }
+ });
+ 
+         let lastScrollTop = 0; // Variable to store the last scroll position
+ 
+ window.addEventListener('scroll', () => {
+     const header = document.querySelector('.header');
+     const currentScrollTop = window.scrollY || document.documentElement.scrollTop;
+ 
+     if (currentScrollTop > lastScrollTop) {
+         // Scrolling down
+         header.classList.add('hide'); // Hide the header
+     } else {
+         // Scrolling up
+         header.classList.remove('hide'); // Show the header
+     }
+ 
+     lastScrollTop = currentScrollTop; // Update the last scroll position
+ });
+ 
+ // Function to check if an element is in the viewport
+ function isInViewport(element) {
+     const rect = element.getBoundingClientRect();
+     return (
+         rect.top >= 0 &&
+         rect.left >= 0 &&
+         rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+         rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+     );
+ }
+ 
+ // Function to handle scroll events
+ function handleScroll() {
+     const sections = document.querySelectorAll('.fade-in');
+ 
+     sections.forEach((section) => {
+         if (isInViewport(section)) {
+             section.classList.add('visible');
+         }
+     });
+ }
+ 
+ // Add scroll event listener
+ window.addEventListener('scroll', handleScroll);
+ 
+ // Trigger the function on page load to check for sections already in the viewport
+ window.addEventListener('load', handleScroll);
+ 
+ 
+  // Close the menu when a link is clicked
+  document.querySelectorAll('.nav-links a').forEach(link => {
+         link.addEventListener('click', () => {
+             navLinks.classList.remove('active');
+             mobileMenu.classList.remove('active');
+         });
+     });
+ 
+     // Smooth scrolling for anchor links (excluding dropdown links)
+ document.querySelectorAll('.nav-links a:not(.dropdown-toggle)').forEach(anchor => {
+     anchor.addEventListener('click', function (e) {
+         if (this.getAttribute('href').startsWith('#')) {
+             e.preventDefault();
+             document.querySelector(this.getAttribute('href')).scrollIntoView({
+                 behavior: 'smooth'
+             });
+         }
+         // Allow default behavior for non-hash links (e.g., about-us.html, our-team.html)
+     });
+ });
+ 
+ 
+         // Back-to-Top Button
+         const backToTopButton = document.querySelector('.back-to-top');
+ 
+         window.addEventListener('scroll', () => {
+             if (window.scrollY > 300) {
+                 backToTopButton.style.display = 'block';
+             } else {
+                 backToTopButton.style.display = 'none';
+             }
+         });
+ 
+         backToTopButton.addEventListener('click', () => {
+             window.scrollTo({ top: 0, behavior: 'smooth' });
+         });
+         
+ 
+         // Fade-In Animation on Scroll
+         const fadeElements = document.querySelectorAll('.fade-in');
+ 
+         const fadeInOnScroll = () => {
+             fadeElements.forEach((element) => {
+                 const elementTop = element.getBoundingClientRect().top;
+                 const elementBottom = element.getBoundingClientRect().bottom;
+                 if (elementTop < window.innerHeight && elementBottom > 0) {
+                     element.style.opacity = 1;
+                     element.style.transform = 'translateY(0)';
+                 }
+             });
+         };
+ 
+         window.addEventListener('scroll', fadeInOnScroll);
+         window.addEventListener('load', fadeInOnScroll);
+     </script>
+
+</body>
+</html>
